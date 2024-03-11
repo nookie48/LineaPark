@@ -60,6 +60,10 @@ def get_modules_list():
         modules.append('bitavatar')
         shuffle(modules)
 
+    if settings.town_story_switch == 1:
+        modules.append('townstory')
+        shuffle(modules)
+
     return modules
 
 

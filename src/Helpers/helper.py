@@ -7,6 +7,15 @@ import settings
 from src.Wallet import Wallet
 import datetime
 import requests
+from eth_account.messages import encode_defunct
+
+
+def sign_msg(wallet, message_text, net):
+    text_hex = "0x" + message_text.encode('utf-8').hex()
+    text_encoded = encode_defunct(hexstr=text_hex)
+    signed_message = net.web3.eth.account.sign_message(text_encoded, private_key=wallet.key)
+    signature = signed_message.signature
+    return signature.hex()
 
 
 def get_curr_time():

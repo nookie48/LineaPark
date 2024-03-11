@@ -73,6 +73,8 @@ gamer_boom_enable = 0  # Активны ли модули GamerBoom
 gamer_boom_mint_switch = 0  # Включен ли минт GamerBoom - НЕ НУЖЕН, засчитываает без него.
 gamer_boom_proof_switch = 1  # Включен ли proof GamerBoom
 
+town_story_switch = 0  # Активен ли модуль TownStory
+
 
 # ///// Параметры для квестов Week 2
 abyss_world_mint_switch = 0  # Включен ли минт Abyss World
@@ -102,7 +104,7 @@ gamic_eth_digs = 7  # Знаков после запятой для эфира
 
 as_match_mint_switch = 0  # Активен ли модуль AsMatch
 
-bit_avatar_switch = 1  # Активен ли модуль BitAvatar
+bit_avatar_switch = 0  # Активен ли модуль BitAvatar
 
 read_on_switch = 0  # Активен ли модуль ReadOn
 

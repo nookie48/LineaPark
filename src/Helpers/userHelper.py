@@ -53,6 +53,11 @@ def get_info(wallets):
     else:
         logger.cs_logger.info('Квесты GamerBoom Отключены')
 
+    if stgs.town_story_switch == 1:
+        logger.cs_logger.info('Модуль Town Story Включен')
+    else:
+        logger.cs_logger.info('Модуль Town Story Отключен')
+
     if stgs.yooldo_enable == 1:
         if stgs.daily_switch == 1:
             logger.cs_logger.info('Модуль Daily Stand-Up Включен')

@@ -15,6 +15,7 @@ from src.Quests.Week3.ReadOn.curate import read_on_curate
 from src.Quests.Week3.SendingMe.abuse import sending_me
 from src.Quests.Week3.Gamic.swap import gamic_swap
 from src.Quests.Week3.BitAvatar.checkIn import bit_avatar
+from src.Quests.Week1.TownStory.mint import town_story
 
 
 def quest_ops(wallet, modules):
@@ -87,3 +88,8 @@ def quest_ops(wallet, modules):
             cs_logger.info(f'    ***   Модуль BitAvatar  ***   ')
             check_limit()
             running(wallet, bit_avatar)
+
+        if module == 'townstory':
+            cs_logger.info(f'    ***   Модуль TownStory  ***   ')
+            check_limit()
+            running(wallet, town_story)
