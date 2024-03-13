@@ -113,6 +113,10 @@ sending_me_eth_value = [0.00000001, 0.000003]  # Количество эфира
 sending_me_eth_digs = 8  # Знаков после запятой для эфира
 
 
+# ///// Параметры для квестов Week 4
+sarubol_mint_switch = 0  # Активен ли модуль Sarubol mint
+zypher_2048_switch = 0  # Активен ли модуль Zypher 2048
+
 
 #       / Параметры старых модулей /
 eth_swap_switch = 0  # Включен ли свап ETH на USDC перед операциями

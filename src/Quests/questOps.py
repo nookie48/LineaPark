@@ -16,6 +16,8 @@ from src.Quests.Week3.SendingMe.abuse import sending_me
 from src.Quests.Week3.Gamic.swap import gamic_swap
 from src.Quests.Week3.BitAvatar.checkIn import bit_avatar
 from src.Quests.Week1.TownStory.mint import town_story
+from src.Quests.Week4.Sarubol.mint import sarubol_mint
+from src.Quests.Week4.Zypher.start import zypher
 
 
 def quest_ops(wallet, modules):
@@ -93,3 +95,13 @@ def quest_ops(wallet, modules):
             cs_logger.info(f'    ***   Модуль TownStory  ***   ')
             check_limit()
             running(wallet, town_story)
+
+        if module == 'sarubol':
+            cs_logger.info(f'    ***   Модуль Sarubol  ***   ')
+            check_limit()
+            running(wallet, sarubol_mint)
+
+        if module == 'zypher2048':
+            cs_logger.info(f'    ***   Модуль Zypher 2048  ***   ')
+            check_limit()
+            running(wallet, zypher)
