@@ -72,6 +72,10 @@ def get_modules_list():
         modules.append('zypher2048')
         shuffle(modules)
 
+    if settings.nidum_mint_switch == 1:
+        modules.append('nidum')
+        shuffle(modules)
+
     return modules
 
 

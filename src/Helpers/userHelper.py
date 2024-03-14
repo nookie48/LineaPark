@@ -53,6 +53,11 @@ def get_info(wallets):
     else:
         logger.cs_logger.info('Квесты GamerBoom Отключены')
 
+    if stgs.nidum_mint_switch == 1:
+        logger.cs_logger.info('Модуль Nidum Nft Включен')
+    else:
+        logger.cs_logger.info('Модуль Nidum Nft Отключен')
+
     if stgs.town_story_switch == 1:
         logger.cs_logger.info('Модуль Town Story Включен')
     else:

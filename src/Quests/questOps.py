@@ -18,6 +18,7 @@ from src.Quests.Week3.BitAvatar.checkIn import bit_avatar
 from src.Quests.Week1.TownStory.mint import town_story
 from src.Quests.Week4.Sarubol.mint import sarubol_mint
 from src.Quests.Week4.Zypher.start import zypher
+from src.Quests.Week1.Nidum.mint import nidum_mint
 
 
 def quest_ops(wallet, modules):
@@ -105,3 +106,8 @@ def quest_ops(wallet, modules):
             cs_logger.info(f'    ***   Модуль Zypher 2048  ***   ')
             check_limit()
             running(wallet, zypher)
+
+        if module == 'nidum':
+            cs_logger.info(f'    ***   Модуль Nidum Mint  ***   ')
+            check_limit()
+            running(wallet, nidum_mint)
