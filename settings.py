@@ -5,7 +5,7 @@ modules = list()
 wallet_mode = 2  # Режим кошельков: 1 - порядок как в файле, 2 - случайный порядок
 wallets = open('wallets.txt')  # Файл с приватниками и адресами бирж
 log_file = 'LineaPark logs.xlsx'  # Файл логов
-gas_price_limit = 140  # Лимит цены газа в Эфире
+gas_price_limit = 40  # Лимит цены газа в Эфире
 
 
 #       / Параметры биржи /
@@ -73,7 +73,7 @@ gamer_boom_enable = 0  # Активны ли модули GamerBoom
 gamer_boom_mint_switch = 0  # Включен ли минт GamerBoom - НЕ НУЖЕН, засчитываает без него.
 gamer_boom_proof_switch = 1  # Включен ли proof GamerBoom
 
-nidum_mint_switch = 1  # Активен ли модуль Nidum минт
+nidum_mint_switch = 0  # Активен ли модуль Nidum минт
 
 town_story_switch = 0  # Активен ли модуль TownStory
 
