@@ -65,6 +65,14 @@ slippage = 0.010  # Проскальзывание для бриджа (напр
 gas_price_mult = [1.02, 1.04]  # Наценка на газ
 gas_mult = [1.45, 1.75]  # Добавочный процент для количества газа
 
+
+#       / Параметры Proof of Humanity  /
+poh_enable = 0  # Включены ли транзакции POH
+trusta_a_switch = 1  # Включен ли модуль Trusta Group A
+trusta_b_switch = 1  # Включен ли модуль Trusta Group B
+ruby_switch = 1  # Включен ли модуль RubyScore Group B
+
+
 #       / Параметры операций для квестов /
 try_delay = [5, 7]  # Перерыв между доп попытками
 

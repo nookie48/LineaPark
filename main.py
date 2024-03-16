@@ -11,6 +11,7 @@ import src.Bridges.stargateBridge as stargateBridge
 from src.Swaps.swapOps import swap_usdc_remains
 from src.Quests.questHelper import get_modules_list
 from src.Quests.questOps import quest_ops
+from src.POH.proofOps import proof_op
 
 
 logger.create_xml()
@@ -50,6 +51,13 @@ def main():
         # Свапаем остатки USDC на эфир после всех операций, если нужно
         gPC.check_limit()
         swap_usdc_remains(wallet)
+
+        # Транзакции POH
+        proof_op(wallet)
+
+        balance_end = nt.linea_net.web3.from_wei(nt.linea_net.web3.eth.get_balance(wallet.address), 'ether')
+        nonce = nt.linea_net.web3.eth.get_transaction_count(wallet.address)
+        logger.write_overall(wallet, balance_st, balance_end, script_time, nonce)
 
         # Депозит на биржу или бридж
         if settings.exc_deposit == 1:

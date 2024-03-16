@@ -27,9 +27,7 @@ def create_xml():
         worksheet.cell(row=1, column=8).value = "Кол-во транз кошелька"
         worksheet.cell(row=1, column=9).value = "Нач. баланс биржи"
         worksheet.cell(row=1, column=10).value = "Кон. баланс биржи"
-        worksheet.cell(row=1, column=11).value = "Сумма депозита $ FWDX"
-        worksheet.cell(row=1, column=12).value = "Сумма депозита $ ZKDX"
-        worksheet.cell(row=1, column=13).value = "Время"
+        worksheet.cell(row=1, column=11).value = "Время"
         workbook.save(log_file)
 
         worksheet = workbook.create_sheet('Bridge transactions')
@@ -63,50 +61,45 @@ def create_xml():
         workbook.save(log_file)
         workbook.close()
 
-        worksheet = workbook.create_sheet('Market transactions')
+        worksheet = workbook.create_sheet('POH attestations')
         worksheet.cell(row=1, column=1).value = "№ кошелька"
-        worksheet.cell(row=1, column=2).value = "№ транзакции"
-        worksheet.cell(row=1, column=3).value = "Адрес кошелька"
-        worksheet.cell(row=1, column=4).value = "Тип операции"
-        worksheet.cell(row=1, column=5).value = "Сумма операции"
-        worksheet.cell(row=1, column=6).value = "Hash транзакции"
-        worksheet.cell(row=1, column=7).value = "Нач. баланс USDC"
-        worksheet.cell(row=1, column=8).value = "Кон. баланс USDC"
-        worksheet.cell(row=1, column=9).value = "Время"
+        worksheet.cell(row=1, column=2).value = "Адрес кошелька"
+        worksheet.cell(row=1, column=3).value = "Trusta A hash"
+        worksheet.cell(row=1, column=4).value = "Trusta A score"
+        worksheet.cell(row=1, column=5).value = "Trusta B hash"
+        worksheet.cell(row=1, column=6).value = "Trusta B score"
+        worksheet.cell(row=1, column=7).value = "RubyScore hash"
+        worksheet.cell(row=1, column=8).value = "RubyScore score"
         workbook.save(log_file)
         workbook.close()
 
 
-class LogMarket(object):
-    def __init__(self, index, txn_num, address, op_type, operation_value, txn_hash,
-                 balance_st_usdc, balance_end_usdc):
+class LogProof(object):
+    def __init__(self, index, address, proof_type, txn_hash, score):
         self.address = address
-        self.txn_num = txn_num
-        self.operation_value = operation_value
-        self.op_type = op_type
+        self.proof_type = proof_type
         self.txn_hash = txn_hash
-        self.balance_st_usdc = balance_st_usdc
-        self.balance_end_usdc = balance_end_usdc
+        self.score = score
         self.index = index
 
-    def write_log(self, script_time):
+    def write_log(self):
         while True:
             try:
                 log_file = settings.log_file
                 workbook = openpyxl.load_workbook(log_file)
-                worksheet = workbook['Market transactions']
+                worksheet = workbook['POH attestations']
                 last_row = worksheet.max_row
-                worksheet.cell(row=last_row + 1, column=1).value = self.index
-                worksheet.cell(row=last_row + 1, column=2).value = self.txn_num
-                worksheet.cell(row=last_row + 1, column=3).value = self.address
-                worksheet.cell(row=last_row + 1, column=4).value = self.op_type
-                worksheet.cell(row=last_row + 1, column=5).value = self.operation_value
-                worksheet.cell(row=last_row + 1, column=6).value = self.txn_hash
-                worksheet.cell(row=last_row + 1, column=7).value = self.balance_st_usdc
-                worksheet.cell(row=last_row + 1, column=7).number_format = '0.00'
-                worksheet.cell(row=last_row + 1, column=8).value = self.balance_end_usdc
-                worksheet.cell(row=last_row + 1, column=8).number_format = '0.00'
-                worksheet.cell(row=last_row + 1, column=9).value = script_time
+                worksheet.cell(row=1 + self.index, column=1).value = self.index
+                worksheet.cell(row=1 + self.index, column=2).value = self.address
+                if self.proof_type == 'Trusta A':
+                    worksheet.cell(row=1 + self.index, column=3).value = self.txn_hash
+                    worksheet.cell(row=1 + self.index, column=4).value = self.score
+                if self.proof_type == 'Trusta B':
+                    worksheet.cell(row=1 + self.index, column=5).value = self.txn_hash
+                    worksheet.cell(row=1 + self.index, column=6).value = self.score
+                if self.proof_type == 'RubyScore':
+                    worksheet.cell(row=1 + self.index, column=7).value = self.txn_hash
+                    worksheet.cell(row=1 + self.index, column=8).value = self.score
                 workbook.save(log_file)
                 workbook.close()
                 break
@@ -147,13 +140,7 @@ def write_overall(wallet, balance_st, balance_end, script_time, nonce):
 
             worksheet.cell(row=last_row + wallet.index, column=10).value = wallet.exc_bal_end
             worksheet.cell(row=last_row + wallet.index, column=10).number_format = '0.00000'
-
-            worksheet.cell(row=last_row + wallet.index, column=11).value = wallet.fwdx_value
-            worksheet.cell(row=last_row + wallet.index, column=11).number_format = '0.00'
-
-            worksheet.cell(row=last_row + wallet.index, column=12).value = wallet.zkdx_value
-            worksheet.cell(row=last_row + wallet.index, column=12).number_format = '0.00'
-            worksheet.cell(row=last_row + wallet.index, column=13).value = script_time
+            worksheet.cell(row=last_row + wallet.index, column=11).value = script_time
             workbook.save(settings.log_file)
             workbook.close()
             break

@@ -40,6 +40,26 @@ def get_info(wallets):
     else:
         logger.cs_logger.info('Свап остатков USDC на эфир после операций Отключен')
 
+    if stgs.poh_enable == 1:
+        logger.cs_logger.info('Транзакции POH Включены')
+
+        if stgs.trusta_a_switch == 1:
+            logger.cs_logger.info('Модуль POH Trusta Group A Включен')
+        else:
+            logger.cs_logger.info('Модуль POH Trusta Group A Отключен')
+
+        if stgs.trusta_b_switch == 1:
+            logger.cs_logger.info('Модуль POH Trusta Group B Включен')
+        else:
+            logger.cs_logger.info('Модуль POH Trusta Group B Отключен')
+
+        if stgs.ruby_switch == 1:
+            logger.cs_logger.info('Модуль POH RubyScore Group B Включен')
+        else:
+            logger.cs_logger.info('Модуль POH RubyScore Group B Отключен')
+    else:
+        logger.cs_logger.info('Транзакции POH Отключены')
+
     if stgs.gamer_boom_enable == 1:
         if stgs.gamer_boom_proof_switch == 1:
             logger.cs_logger.info('Модуль GamerBoom Proof Включен')
