@@ -19,6 +19,7 @@ from src.Quests.Week1.TownStory.mint import town_story
 from src.Quests.Week4.Sarubol.mint import sarubol_mint
 from src.Quests.Week4.Zypher.start import zypher
 from src.Quests.Week1.Nidum.mint import nidum_mint
+from src.Quests.Week4.LuckyCat.mint import lucky_cat
 
 
 def quest_ops(wallet, modules):
@@ -111,3 +112,8 @@ def quest_ops(wallet, modules):
             cs_logger.info(f'    ***   Модуль Nidum Mint  ***   ')
             check_limit()
             running(wallet, nidum_mint)
+
+        if module == 'luckycat':
+            cs_logger.info(f'    ***   Модуль LuckyCat Mint  ***   ')
+            check_limit()
+            running(wallet, lucky_cat)

@@ -76,6 +76,10 @@ def get_modules_list():
         modules.append('nidum')
         shuffle(modules)
 
+    if settings.lucky_cat_switch == 1:
+        modules.append('luckycat')
+        shuffle(modules)
+
     return modules
 
 
