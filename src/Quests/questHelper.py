@@ -84,6 +84,10 @@ def get_modules_list():
         modules.append('battlemon')
         shuffle(modules)
 
+    if settings.omni_zone_switch == 1:
+        modules.append('omnizone')
+        shuffle(modules)
+
     return modules
 
 

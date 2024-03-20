@@ -169,6 +169,11 @@ def get_info(wallets):
     else:
         logger.cs_logger.info('Модуль Battlemon Отключен')
 
+    if stgs.omni_zone_switch == 1:
+        logger.cs_logger.info('Модуль OmniZone Включен')
+    else:
+        logger.cs_logger.info('Модуль OmniZone Отключен')
+
     logger.cs_logger.info('Список обнаруженных адресов кошельков -- адресов бирж')
     for wallet in wallets:
         logger.cs_logger.info(f'№ {wallet.wallet_num} | {wallet.address} -- {wallet.exchange_address}')

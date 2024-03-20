@@ -130,6 +130,7 @@ lucky_cat_switch = 0  # Активен ли модуль LuckyCat
 
 
 # ///// Параметры для квестов Week 5
+omni_zone_switch = 0  # Активен ли модуль OmniZone
 battlemon_switch = 0  # Активен ли модуль Battlemon
 
 
