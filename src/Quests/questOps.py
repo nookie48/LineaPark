@@ -20,6 +20,7 @@ from src.Quests.Week4.Sarubol.mint import sarubol_mint
 from src.Quests.Week4.Zypher.start import zypher
 from src.Quests.Week1.Nidum.mint import nidum_mint
 from src.Quests.Week4.LuckyCat.mint import lucky_cat
+from src.Quests.Week5.Battlemon.mint import battlemon
 
 
 def quest_ops(wallet, modules):
@@ -117,3 +118,8 @@ def quest_ops(wallet, modules):
             cs_logger.info(f'    ***   Модуль LuckyCat Mint  ***   ')
             check_limit()
             running(wallet, lucky_cat)
+
+        if module == 'battlemon':
+            cs_logger.info(f'    ***   Модуль Battlemon Mint  ***   ')
+            check_limit()
+            running(wallet, battlemon)

@@ -129,6 +129,10 @@ zypher_2048_switch = 0  # Активен ли модуль Zypher 2048
 lucky_cat_switch = 0  # Активен ли модуль LuckyCat
 
 
+# ///// Параметры для квестов Week 5
+battlemon_switch = 0  # Активен ли модуль Battlemon
+
+
 #       / Параметры старых модулей /
 eth_swap_switch = 0  # Включен ли свап ETH на USDC перед операциями
 usdc_swap_switch = 0  # Включен ли свап USDC на ETH после операций

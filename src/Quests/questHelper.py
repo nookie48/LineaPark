@@ -80,6 +80,10 @@ def get_modules_list():
         modules.append('luckycat')
         shuffle(modules)
 
+    if settings.battlemon_switch == 1:
+        modules.append('battlemon')
+        shuffle(modules)
+
     return modules
 
 
