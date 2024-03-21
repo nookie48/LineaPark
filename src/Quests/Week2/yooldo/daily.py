@@ -7,7 +7,7 @@ import settings
 
 def build_txn(wallet):
     try:
-        value = linea_net.web3.to_wei(0.000002, 'ether')
+        value = linea_net.web3.to_wei(0.0001, 'ether')
         txn = get_txn_dict(wallet.address, linea_net, value)
         txn['to'] = linea_net.web3.to_checksum_address('0x63ce21bd9af8cc603322cb025f26db567de8102b')
         txn['data'] = '0xfb89f3b1'
