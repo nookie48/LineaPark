@@ -14,7 +14,7 @@ def proof_op(wallet):
             proof_list.append('trustaA')
             shuffle(proof_list)
 
-        if settings.trusta_a_switch == 1:
+        if settings.trusta_b_switch == 1:
             proof_list.append('trustaB')
             shuffle(proof_list)
 
