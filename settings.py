@@ -5,7 +5,9 @@ modules = list()
 wallet_mode = 2  # Режим кошельков: 1 - порядок как в файле, 2 - случайный порядок
 wallets = open('wallets.txt')  # Файл с приватниками и адресами бирж
 log_file = 'LineaPark logs.xlsx'  # Файл логов
-gas_price_limit = 40  # Лимит цены газа в Эфире
+gas_price_switch = 1  # 1 - проверяется текущая цена газа в Linea, 2 - в Ethereum
+gas_price_limit_ether = 40  # Лимит цены газа в Эфире
+gas_price_limit_linea = 1.5  # Лимит цены газа в Линее
 
 
 #       / Параметры биржи /
@@ -152,6 +154,6 @@ rem_digs = 6  # Количество знаков после запятой дл
 test_mode = 0
 last_row = 1
 last_row_poh = 1
-gas_price_ether = 999
+gas_price_net = 999
 stop_flag = False
 start_flag = False

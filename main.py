@@ -91,7 +91,7 @@ def main():
 logger.cs_logger.info(f'Найдено кошельков: {len(wallets)}')
 userHelper.get_info(wallets)
 if settings.start_flag is True:
-    gPC.check_gas_price_ether()
+    gPC.check_gas_price_net()
     check_thread = Thread(target=gPC.checking, args=(), daemon=True)
     main_thread = Thread(target=main, args=())
     check_thread.start()
