@@ -44,32 +44,33 @@ def get_info(wallets):
         logger.cs_logger.info('Транзакции POH Включены')
 
         if stgs.trusta_a_switch == 1:
-            logger.cs_logger.info('Модуль POH Trusta Group A Включен')
+            logger.cs_logger.info('-- Модуль POH Trusta Group A Включен')
         else:
-            logger.cs_logger.info('Модуль POH Trusta Group A Отключен')
+            logger.cs_logger.info('-- Модуль POH Trusta Group A Отключен')
 
         if stgs.trusta_b_switch == 1:
-            logger.cs_logger.info('Модуль POH Trusta Group B Включен')
+            logger.cs_logger.info('-- Модуль POH Trusta Group B Включен')
         else:
-            logger.cs_logger.info('Модуль POH Trusta Group B Отключен')
+            logger.cs_logger.info('-- Модуль POH Trusta Group B Отключен')
 
         if stgs.ruby_switch == 1:
-            logger.cs_logger.info('Модуль POH RubyScore Group B Включен')
+            logger.cs_logger.info('-- Модуль POH RubyScore Group B Включен')
         else:
-            logger.cs_logger.info('Модуль POH RubyScore Group B Отключен')
+            logger.cs_logger.info('-- Модуль POH RubyScore Group B Отключен')
     else:
         logger.cs_logger.info('Транзакции POH Отключены')
 
     if stgs.gamer_boom_enable == 1:
+        logger.cs_logger.info('Квест GamerBoom Включен')
         if stgs.gamer_boom_proof_switch == 1:
-            logger.cs_logger.info('Модуль GamerBoom Proof Включен')
+            logger.cs_logger.info('-- Модуль GamerBoom Proof Включен')
         else:
-            logger.cs_logger.info('Модуль GamerBoom Proof Отключен')
+            logger.cs_logger.info('-- Модуль GamerBoom Proof Отключен')
 
         if stgs.gamer_boom_mint_switch == 1:
-            logger.cs_logger.info('Модуль GamerBoom Mint Включен')
+            logger.cs_logger.info('-- Модуль GamerBoom Mint Включен')
         else:
-            logger.cs_logger.info('Модуль GamerBoom Mint Отключен')
+            logger.cs_logger.info('-- Модуль GamerBoom Mint Отключен')
     else:
         logger.cs_logger.info('Квесты GamerBoom Отключены')
 
@@ -84,19 +85,21 @@ def get_info(wallets):
         logger.cs_logger.info('Модуль Town Story Отключен')
 
     if stgs.yooldo_enable == 1:
+        logger.cs_logger.info('Квест Yooldo Включен')
         if stgs.daily_switch == 1:
-            logger.cs_logger.info('Модуль Daily Stand-Up Включен')
+            logger.cs_logger.info('-- Модуль Yooldo Daily Stand-Up Включен')
         else:
-            logger.cs_logger.info('Модуль Daily Stand-Up Отключен')
+            logger.cs_logger.info('-- Модуль Yooldo Daily Stand-Up Отключен')
 
         if stgs.trob_swap_switch == 1:
-            logger.cs_logger.info('Модуль TROB swap Включен')
+            logger.cs_logger.info('-- Модуль Yooldo TROB swap Включен')
         else:
-            logger.cs_logger.info('Модуль TROB swap Отключен')
+            logger.cs_logger.info('-- Модуль Yooldo TROB swap Отключен')
     else:
         logger.cs_logger.info('Квесты Yooldo Отключены')
 
     if stgs.pictographs_enable == 1:
+        logger.cs_logger.info('Квест Pictographs Включен')
         if stgs.pictographs_mint_switch == 1:
             logger.cs_logger.info('Модуль Pictographs Mint Включен')
         else:
