@@ -1,10 +1,8 @@
 import eth_abi
-
 from src.networks import linea_net
 from src.logger import cs_logger
 from src.Helpers.txnHelper import get_txn_dict
 from src.Quests.questHelper import Quest
-from src.Quests.Week1.Nidum.sign import request_ops
 from src.ABIs import Nouns_ABI
 
 
