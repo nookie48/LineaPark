@@ -43,7 +43,7 @@ def attest_b(wallet):
                 log = LogProof(wallet.index, wallet.address, 'Trusta B', 'Уже выполнена', score)
                 log.write_log()
                 return True
-        if score < 20:
+        if score < 21:
             cs_logger.info(f'Score кошелька менее 20: score = {score}, аттестация не выполняется')
             log = LogProof(wallet.index, wallet.address, 'Trusta B', 'Не выполнялась', score)
             log.write_log()
