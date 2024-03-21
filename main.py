@@ -15,7 +15,8 @@ from src.POH.proofOps import proof_op
 
 
 logger.create_xml()
-settings.last_row = logger.get_last_row_overall()
+settings.last_row = logger.get_last_row_overall('Overall')
+settings.last_row_poh = logger.get_last_row_overall('POH attestations')
 wallets = helper.read_wallets()
 net_src = nt.arbitrum_net
 

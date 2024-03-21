@@ -13,6 +13,16 @@ contract = linea_net.web3.eth.contract(linea_net.web3.to_checksum_address(contra
                                        abi=RubyScore_ABI)
 
 
+def check_attest(wallet, token_auth):
+    url = f'https://rubyscore.io/api/attestation/check?wallet={wallet.address}&project=linea'
+    headers = {'Authorization': f'Bearer {token_auth}', 'Accept': 'application/json'}
+    r = requests.post(url, headers=headers)
+    if r.status_code == 200:
+        res = [r.json()]
+        attest_count = res[0]['result']['count']
+        return attest_count
+
+
 def get_score(wallet, token_auth):
     url = f'https://rubyscore.io/api/profile/{wallet.address}/score'
     headers = {'Authorization': f'Bearer {token_auth}', 'Accept': 'application/json'}
@@ -55,6 +65,13 @@ def attest_ruby(wallet):
         cs_logger.info(f'Делаем аттестацию RubyScore Group B')
         token_auth = sign_in_message(wallet)
         score = get_score(wallet, token_auth)
+        attest_count = check_attest(wallet, token_auth)
+        if settings.ruby_replace_enable == 0:
+            if attest_count != 0:
+                cs_logger.info(f'Аттестация уже пройдена, замена отключена, скипаем')
+                log = LogProof(wallet.index, wallet.address, 'RubyScore', 'Уже выполнена', score)
+                log.write_log()
+                return True
         txn_calldata = get_attest_data(token_auth)
         if score < 15:
             cs_logger.info(f'Score кошелька равен {score}, аттестация не выполняется')

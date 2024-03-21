@@ -36,6 +36,13 @@ def attest_b(wallet):
         token_auth = sign_in_message(wallet)
         txn_calldata = get_attest_data_media(token_auth)
         score = txn_calldata['message']['score']
+        if settings.trusta_b_replace_enable == 0:
+            method = txn_calldata['calldata']['data'][0:10]
+            if method == '0xecdbb4fd':
+                cs_logger.info(f'Аттестация уже пройдена, замена отключена, скипаем')
+                log = LogProof(wallet.index, wallet.address, 'Trusta B', 'Уже выполнена', score)
+                log.write_log()
+                return True
         if score < 20:
             cs_logger.info(f'Score кошелька менее 20: score = {score}, аттестация не выполняется')
             log = LogProof(wallet.index, wallet.address, 'Trusta B', 'Не выполнялась', score)
