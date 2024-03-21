@@ -174,6 +174,11 @@ def get_info(wallets):
     else:
         logger.cs_logger.info('Модуль OmniZone Отключен')
 
+    if stgs.nouns_swich == 1:
+        logger.cs_logger.info('Модуль Nouns Включен')
+    else:
+        logger.cs_logger.info('Модуль Nouns Отключен')
+
     logger.cs_logger.info('Список обнаруженных адресов кошельков -- адресов бирж')
     for wallet in wallets:
         logger.cs_logger.info(f'№ {wallet.wallet_num} | {wallet.address} -- {wallet.exchange_address}')
