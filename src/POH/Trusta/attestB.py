@@ -44,7 +44,7 @@ def attest_b(wallet):
                 log.write_log()
                 return True
         if score < 21:
-            cs_logger.info(f'Score кошелька менее 20: score = {score}, аттестация не выполняется')
+            cs_logger.info(f'Score кошелька менее 21: score = {score}, аттестация не выполняется')
             log = LogProof(wallet.index, wallet.address, 'Trusta B', 'Не выполнялась', score)
             log.write_log()
             return False
@@ -68,3 +68,14 @@ def attest_b(wallet):
     except Exception as ex:
         cs_logger.info(f'Ошибка в (Trusta/attestB: attest_b) {ex.args}')
 
+
+def score_check(wallet):
+    try:
+        cs_logger.info(f'Проверяем баллы для аттестации Trusta Group B')
+        token_auth = sign_in_message(wallet)
+        txn_calldata = get_attest_data_media(token_auth)
+        score = txn_calldata['message']['score']
+        log = LogProof(wallet.index, wallet.address, 'Trusta B', 'Предварительная оценка', score)
+        log.write_log()
+    except Exception as ex:
+        cs_logger.info(f'Ошибка в (Trusta/attestB: score_check) {ex.args}')

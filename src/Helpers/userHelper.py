@@ -57,7 +57,10 @@ def get_info(wallets):
             logger.cs_logger.info('-- Модуль POH RubyScore Group B Включен')
         else:
             logger.cs_logger.info('-- Модуль POH RubyScore Group B Отключен')
-    else:
+
+    if stgs.poh_enable == 2:
+        logger.cs_logger.info('Проверка Score POH Включена')
+    if stgs.poh_enable == 0:
         logger.cs_logger.info('Транзакции POH Отключены')
 
     if stgs.gamer_boom_enable == 1:

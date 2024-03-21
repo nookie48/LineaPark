@@ -98,3 +98,13 @@ def attest_ruby(wallet):
     except Exception as ex:
         cs_logger.info(f'Ошибка в (Ruby/attest: attest) {ex.args}')
 
+
+def score_check(wallet):
+    try:
+        cs_logger.info(f'Проверяем баллы для аттестации RubyScore Group B')
+        token_auth = sign_in_message(wallet)
+        score = get_score(wallet, token_auth)
+        log = LogProof(wallet.index, wallet.address, 'RubyScore', 'Предварительная оценка', score)
+        log.write_log()
+    except Exception as ex:
+        cs_logger.info(f'Ошибка в (Ruby/attest: score_check) {ex.args}')

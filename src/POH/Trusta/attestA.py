@@ -68,3 +68,14 @@ def attest_a(wallet):
     except Exception as ex:
         cs_logger.info(f'Ошибка в (Trusta/attestA: attest_a) {ex.args}')
 
+
+def score_check(wallet):
+    try:
+        cs_logger.info(f'Проверяем баллы для аттестации Trusta Group A')
+        token_auth = sign_in_message(wallet)
+        txn_calldata = get_attest_data_humanity(token_auth)
+        score = txn_calldata['message']['score']
+        log = LogProof(wallet.index, wallet.address, 'Trusta A', 'Предварительная оценка', score)
+        log.write_log()
+    except Exception as ex:
+        cs_logger.info(f'Ошибка в (Trusta/attestA: score_check) {ex.args}')
