@@ -121,9 +121,9 @@ def get_info(wallets):
         logger.cs_logger.info('Модуль Abyss World Отключен')
 
     if stgs.omnisea_mint_switch == 1:
-        logger.cs_logger.info('Модуль Omnisea Включен')
+        logger.cs_logger.info('Модуль Satoshi Universe Omnisea Включен')
     else:
-        logger.cs_logger.info('Модуль Omnisea Отключен')
+        logger.cs_logger.info('Модуль  Satoshi Universe Omnisea Отключен')
 
     if stgs.dmail_switch == 1:
         logger.cs_logger.info('Модуль Dmail Включен')

@@ -69,7 +69,7 @@ def build_txn_swap_out(wallet, value_token_wei):
         usdc_address = USDC_token.address
         weth_address = wETH_token.address
 
-        path_str = (usdc_address.removeprefix('0x') + '0001f4' + weth_address.removeprefix('0x'))
+        path_str = (usdc_address.removeprefix('0x') + '000bb8' + weth_address.removeprefix('0x'))
         path = bytes.fromhex(path_str)
 
         contract_code = eth_abi.encode(

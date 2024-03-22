@@ -2,15 +2,60 @@ from random import shuffle
 from src.networks import linea_net
 import settings
 from src.logger import cs_logger
-from src.Helpers.txnHelper import check_estimate_gas, exec_txn
+from src.Helpers.txnHelper import check_estimate_gas, exec_txn, get_txn_dict
 from src.Helpers.helper import delay_sleep
+from src.Helpers.txnChecker import get_txn_list_from_address, check_txn_existence
 
 
 class Quest(object):
     title = 'Выполняем квестик'
+    contract_address = 'Адрес контракта'
+    method_id = '0xМетодКонтракта'
+    txn_value = 0
 
     def build_txn(self, wallet):
-        pass
+        try:
+            txn = get_txn_dict(wallet.address, linea_net, self.txn_value)
+            txn['to'] = self.contract_address
+            txn['data'] = self.method_id
+            return txn
+        except Exception as ex:
+            cs_logger.info(f'Ошибка в (Quest: build_txn) {ex.args}')
+
+    def run_quest(self, wallet):
+        try:
+            cs_logger.info(f'{self.title}')
+            txn_list = get_txn_list_from_address(wallet.address, 200)
+            txn_check = check_txn_existence(wallet.address, txn_list, self.contract_address, self.method_id)
+            if txn_check is not None:
+                cs_logger.info(f'Данная транзакция уже выполнялась')
+                return True
+            txn = self.build_txn(wallet)
+            estimate_gas = check_estimate_gas(txn, linea_net)
+            if type(estimate_gas) is str:
+                cs_logger.info(f'{estimate_gas}')
+                return False
+            else:
+                txn['gas'] = estimate_gas
+                txn_hash, txn_status = exec_txn(wallet.key, txn, linea_net)
+                cs_logger.info(f'Hash: {txn_hash}')
+
+                wallet.txn_num += 1
+                delay_sleep(settings.txn_delay[0], settings.txn_delay[1])
+                return True
+
+        except Exception as ex:
+            cs_logger.info(f'Ошибка в (questHelper: run_quest) {ex.args}')
+
+    def running(self, wallet):
+        attempt = 1
+        txn_status = False
+        while txn_status is False and attempt < 4:
+            cs_logger.info(f' // Попытка №: {attempt}')
+            txn_status = self.run_quest(wallet)
+            attempt += 1
+            if txn_status is False:
+                delay_sleep(settings.try_delay[0], settings.try_delay[1])
 
 
 def get_modules_list():
@@ -93,35 +138,3 @@ def get_modules_list():
         shuffle(modules)
 
     return modules
-
-
-def run_quest(wallet, quest):
-    try:
-        cs_logger.info(f'{quest.title}')
-        txn = quest.build_txn(wallet)
-        estimate_gas = check_estimate_gas(txn, linea_net)
-        if type(estimate_gas) is str:
-            cs_logger.info(f'{estimate_gas}')
-            return False
-        else:
-            txn['gas'] = estimate_gas
-            txn_hash, txn_status = exec_txn(wallet.key, txn, linea_net)
-            cs_logger.info(f'Hash: {txn_hash}')
-
-            wallet.txn_num += 1
-            delay_sleep(settings.txn_delay[0], settings.txn_delay[1])
-            return True
-
-    except Exception as ex:
-        cs_logger.info(f'Ошибка в (questHelper: run_quest) {ex.args}')
-
-
-def running(wallet, quest):
-    attempt = 1
-    txn_status = False
-    while txn_status is False and attempt < 4:
-        cs_logger.info(f' // Попытка №: {attempt}')
-        txn_status = run_quest(wallet, quest)
-        attempt += 1
-        if txn_status is False:
-            delay_sleep(settings.try_delay[0], settings.try_delay[1])
