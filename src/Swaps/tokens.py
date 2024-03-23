@@ -23,5 +23,5 @@ contract_wETH = linea_net.web3.eth.contract(Web3.to_checksum_address(wETH_token.
 
 TROB_token = Token(
     'TROB',
-    '0x3f61882ACF17110536F9aFC65e60216927871f2b'
+    '0xc04513e23Efe2Cbfcb633D1994304dDb68DF7dCd'
 )
