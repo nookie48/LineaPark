@@ -21,7 +21,7 @@ class YooldoSwap(Quest):
             txn = get_txn_dict(wallet.address, linea_net)
             txn['to'] = self.contract_address
             txn['data'] = self.method_id + eth_abi.encode(['address', 'address', 'uint256'],
-                                                        [USDC_token.address, TROB_token.address, usdc_value]).hex()
+                                                          [USDC_token.address, TROB_token.address, usdc_value]).hex()
             txn['gas'] = 200000
             return txn
         except Exception as ex:
@@ -30,11 +30,12 @@ class YooldoSwap(Quest):
     def run_quest(self, wallet):
         try:
             cs_logger.info(f'{self.title}')
-            txn_list = get_txn_list_from_address(wallet.address, 200)
-            txn_check = check_txn_existence(wallet.address, txn_list, self.contract_address, self.method_id)
-            if txn_check is not None:
-                cs_logger.info(f'Данная транзакция уже выполнялась')
-                return True
+            if settings.check_txn_existence_enable == 1:
+                txn_list = get_txn_list_from_address(wallet.address, 2000)
+                txn_check = check_txn_existence(wallet.address, txn_list, self.contract_address, self.method_id)
+                if txn_check is not None:
+                    cs_logger.info(f'Данная транзакция уже выполнялась')
+                    return True
             usdc_balance = contract_USDC.functions.balanceOf(wallet.address).call()
             if usdc_balance < int(0.01 * 10 ** 6):
                 eth_value = get_eth_value(settings.usdc_limits)

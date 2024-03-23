@@ -25,11 +25,12 @@ class Quest(object):
     def run_quest(self, wallet):
         try:
             cs_logger.info(f'{self.title}')
-            txn_list = get_txn_list_from_address(wallet.address, 200)
-            txn_check = check_txn_existence(wallet.address, txn_list, self.contract_address, self.method_id)
-            if txn_check is not None:
-                cs_logger.info(f'Данная транзакция уже выполнялась')
-                return True
+            if settings.check_txn_existence_enable == 1:
+                txn_list = get_txn_list_from_address(wallet.address, 2000)
+                txn_check = check_txn_existence(wallet.address, txn_list, self.contract_address, self.method_id)
+                if txn_check is not None:
+                    cs_logger.info(f'Данная транзакция уже выполнялась')
+                    return True
             txn = self.build_txn(wallet)
             estimate_gas = check_estimate_gas(txn, linea_net)
             if type(estimate_gas) is str:
@@ -61,80 +62,85 @@ class Quest(object):
 def get_modules_list():
     modules = list()
     # Операции
-    if settings.yooldo_enable == 1:
-        modules.append('yooldo')
-        shuffle(modules)
+    if settings.week_1_enable == 1:
+        if settings.gamer_boom_enable == 1:
+            modules.append('gamerboom')
+            shuffle(modules)
 
-    if settings.pictographs_enable == 1:
-        modules.append('pictographs')
-        shuffle(modules)
+        if settings.nidum_mint_switch == 1:
+            modules.append('nidum')
+            shuffle(modules)
 
-    if settings.abyss_world_mint_switch == 1:
-        modules.append('abyss')
-        shuffle(modules)
+        if settings.town_story_switch == 1:
+            modules.append('townstory')
+            shuffle(modules)
 
-    if settings.omnisea_mint_switch == 1:
-        modules.append('omnisea')
-        shuffle(modules)
+    if settings.week_2_enable == 1:
+        if settings.yooldo_enable == 1:
+            modules.append('yooldo')
+            shuffle(modules)
 
-    if settings.gamer_boom_enable == 1:
-        modules.append('gamerboom')
-        shuffle(modules)
+        if settings.pictographs_enable == 1:
+            modules.append('pictographs')
+            shuffle(modules)
 
-    if settings.dmail_switch == 1:
-        modules.append('dmail')
-        shuffle(modules)
+        if settings.abyss_world_mint_switch == 1:
+            modules.append('abyss')
+            shuffle(modules)
 
-    if settings.as_match_mint_switch == 1:
-        modules.append('asmatch')
-        shuffle(modules)
+        if settings.omnisea_mint_switch == 1:
+            modules.append('omnisea')
+            shuffle(modules)
 
-    if settings.read_on_switch == 1:
-        modules.append('readon')
-        shuffle(modules)
+    if settings.week_3_enable == 1:
+        if settings.dmail_switch == 1:
+            modules.append('dmail')
+            shuffle(modules)
 
-    if settings.sending_me_switch == 1:
-        modules.append('sendingme')
-        shuffle(modules)
+        if settings.as_match_mint_switch == 1:
+            modules.append('asmatch')
+            shuffle(modules)
 
-    if settings.gamic_switch == 1:
-        modules.append('gamic')
-        shuffle(modules)
+        if settings.read_on_switch == 1:
+            modules.append('readon')
+            shuffle(modules)
 
-    if settings.bit_avatar_switch == 1:
-        modules.append('bitavatar')
-        shuffle(modules)
+        if settings.sending_me_switch == 1:
+            modules.append('sendingme')
+            shuffle(modules)
 
-    if settings.town_story_switch == 1:
-        modules.append('townstory')
-        shuffle(modules)
+        if settings.gamic_switch == 1:
+            modules.append('gamic')
+            shuffle(modules)
 
-    if settings.sarubol_mint_switch == 1:
-        modules.append('sarubol')
-        shuffle(modules)
+        if settings.bit_avatar_switch == 1:
+            modules.append('bitavatar')
+            shuffle(modules)
 
-    if settings.zypher_2048_switch == 1:
-        modules.append('zypher2048')
-        shuffle(modules)
+    if settings.week_4_enable == 1:
+        if settings.sarubol_mint_switch == 1:
+            modules.append('sarubol')
+            shuffle(modules)
 
-    if settings.nidum_mint_switch == 1:
-        modules.append('nidum')
-        shuffle(modules)
+        if settings.zypher_2048_switch == 1:
+            modules.append('zypher2048')
+            shuffle(modules)
 
-    if settings.lucky_cat_switch == 1:
-        modules.append('luckycat')
-        shuffle(modules)
+        if settings.lucky_cat_switch == 1:
+            modules.append('luckycat')
+            shuffle(modules)
 
-    if settings.battlemon_switch == 1:
-        modules.append('battlemon')
-        shuffle(modules)
+    if settings.week_5_enable == 1:
+        if settings.battlemon_switch == 1:
+            modules.append('battlemon')
+            shuffle(modules)
 
-    if settings.omni_zone_switch == 1:
-        modules.append('omnizone')
-        shuffle(modules)
+        if settings.omni_zone_switch == 1:
+            modules.append('omnizone')
+            shuffle(modules)
 
-    if settings.nouns_swich == 1:
-        modules.append('nouns')
-        shuffle(modules)
+        if settings.nouns_swich == 1:
+            modules.append('nouns')
+            shuffle(modules)
 
     return modules
