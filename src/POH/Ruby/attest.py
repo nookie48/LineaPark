@@ -9,8 +9,7 @@ from src.ABIs import RubyScore_ABI
 
 
 contract_address = linea_net.web3.to_checksum_address('0xB9cC0Bb020cF55197C4C3d826AC87CAdba51f272')
-contract = linea_net.web3.eth.contract(linea_net.web3.to_checksum_address(contract_address),
-                                       abi=RubyScore_ABI)
+contract = linea_net.get_contract(linea_net.web3.to_checksum_address(contract_address), abi=RubyScore_ABI)
 
 
 def check_attest(wallet, token_auth):

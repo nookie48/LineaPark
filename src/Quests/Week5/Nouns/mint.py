@@ -10,7 +10,7 @@ class Nouns(Quest):
     title = 'Минтим Nouns'
     contract_address = linea_net.web3.to_checksum_address('0x9DF3c2C75a92069B99c73bd386961631F143727C')
     method_id = '0x57bc3d78'
-    contract = linea_net.web3.eth.contract(contract_address, abi=Nouns_ABI)
+    contract = linea_net.get_contract(contract_address, abi=Nouns_ABI)
     currency = '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE'
 
     def build_txn(self, wallet):

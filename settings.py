@@ -39,10 +39,10 @@ exc_digs_max = 5  # Максимальное количество знаков �
 
 
 #       / RPC сетей /
-ethereum_rpc = 'https://1rpc.io/eth'
-linea_rpc = 'https://rpc.linea.build'
-arbitrum_rpc = 'https://1rpc.io/arb'
-optimism_rpc = 'https://1rpc.io/op'
+ethereum_rpc = ['https://1rpc.io/eth']
+linea_rpc = ['https://rpc.linea.build', 'https://1rpc.io/linea', 'https://linea.drpc.org']
+arbitrum_rpc = ['https://1rpc.io/arb']
+optimism_rpc = ['https://1rpc.io/op']
 
 
 #       / Параметры модулей /

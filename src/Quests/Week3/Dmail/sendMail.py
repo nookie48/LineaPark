@@ -8,7 +8,7 @@ from src.ABIs import Dmail_ABI
 class Dmail(Quest):
     title = 'Делаем Dmail транзакцию'
     contract_address = linea_net.web3.to_checksum_address('0xD1A3abf42f9E66BE86cfDEa8c5C2c74f041c5e14')
-    contract = linea_net.web3.eth.contract(contract_address, abi=Dmail_ABI)
+    contract = linea_net.get_contract(contract_address, abi=Dmail_ABI)
     method_id = '0x5b7d7482'
 
     def build_txn(self, wallet):

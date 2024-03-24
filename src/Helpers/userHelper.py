@@ -1,11 +1,12 @@
 import settings
 import settings as stgs
 import src.logger as logger
-from src.networks import ethereum_net
+from src.networks import ethereum_net, linea_net
 
 
 def get_info(wallets):
-    logger.cs_logger.info(f'Цена газа в Ethereum: {ethereum_net.web3.from_wei(ethereum_net.web3.eth.gas_price, "gWei")} gWei')
+    logger.cs_logger.info(f'Цена газа в Ethereum: {ethereum_net.web3.from_wei(ethereum_net.get_gas_price_wei(), "gWei")} gWei')
+    logger.cs_logger.info(f'Цена газа в Linea: {linea_net.web3.from_wei(linea_net.get_gas_price_wei(), "gWei")} gWei')
     if stgs.exc_withdraw == 1:
         logger.cs_logger.info(f'Вывод с биржи в сеть включен!')
         if stgs.exc_mode == 1:

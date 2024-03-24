@@ -8,7 +8,7 @@ from src.Quests.questHelper import Quest
 class Omnisea(Quest):
     title = 'Минтим Omnisea Nft'
     contract_address = linea_net.web3.to_checksum_address('0xecbEE1a087aA83Db1fCC6C2C5eFFC30BCb191589')
-    contract = linea_net.web3.eth.contract(contract_address, abi=Omnisea_ABI)
+    contract = linea_net.get_contract(contract_address, abi=Omnisea_ABI)
     method_id = '0xf648253d'
     nft_address = '0x0dE240B2A3634fCD72919eB591A7207bDdef03cd'
 

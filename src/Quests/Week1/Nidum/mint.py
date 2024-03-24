@@ -9,7 +9,7 @@ from src.ABIs import Nidum_ABI
 class Nidum(Quest):
     title = 'Минтим Nidum'
     contract_address = linea_net.web3.to_checksum_address('0x34Be5b8C30eE4fDe069DC878989686aBE9884470')
-    contract = linea_net.web3.eth.contract(contract_address, abi=Nidum_ABI)
+    contract = linea_net.get_contract(contract_address, abi=Nidum_ABI)
     method_id = '0xe139278f'
 
     def build_txn(self, wallet):

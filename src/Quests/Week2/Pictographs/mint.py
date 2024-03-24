@@ -8,7 +8,7 @@ from src.Quests.questHelper import Quest
 class PictographsMint(Quest):
     title = 'Минтим Pictographs Nft'
     contract_address = linea_net.web3.to_checksum_address('0xb18b7847072117AE863f71F9473D555d601Eb537')
-    contract = linea_net.web3.eth.contract(contract_address, abi=Pictographs_ABI)
+    contract = linea_net.get_contract(contract_address, abi=Pictographs_ABI)
     method_id = '0x14f710fe'
 
     def build_txn(self, wallet):
@@ -25,7 +25,7 @@ class PictographsMint(Quest):
 class PictographsStake(Quest):
     title = 'Стейкаем Pictographs Nft'
     contract_address = linea_net.web3.to_checksum_address('0xb18b7847072117AE863f71F9473D555d601Eb537')
-    contract = linea_net.web3.eth.contract(contract_address, abi=Pictographs_ABI)
+    contract = linea_net.get_contract(contract_address, abi=Pictographs_ABI)
     method_id = '0xa694fc3a'
 
     def build_txn(self, wallet):
