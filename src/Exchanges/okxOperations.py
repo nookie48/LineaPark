@@ -18,7 +18,7 @@ def get_optimism_l1_fee(net, txn_data):
 
 def build_transfer_txn(wallet, net, value, gas, gas_price):
     try:
-        nonce = net.get_nonce()
+        nonce = net.get_nonce(wallet.address)
 
         txn = {
             'chainId': net.chain_id,

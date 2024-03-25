@@ -1,7 +1,6 @@
 import settings
 from web3 import Web3
 from random import choice
-import time
 
 
 class Network(object):
